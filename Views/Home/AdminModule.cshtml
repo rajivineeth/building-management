@@ -1,0 +1,71 @@
+﻿@model IEnumerable<BuildingManagement.Models.MaintenanceRequest>
+
+@{
+    ViewBag.Title = "AdminModule";
+}
+
+<h2>AdminModule</h2>
+
+<table class="table right">
+    <tr>
+        @Html.ActionLink("ViewReport", "ViewReport")
+    </tr>
+</table>
+        <table class="table">
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.UserId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserDetails.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserRequest)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImagePath)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreateDate)
+                </th>
+                <th>
+                    @Html.Label("Approve/Reject")
+                </th>
+
+                <th></th>
+            </tr>
+
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserDetails.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserRequest)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImagePath)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreateDate)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Action", "Approve", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+
+        </table>

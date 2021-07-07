@@ -1,0 +1,66 @@
+﻿@model IEnumerable<BuildingManagement.Models.MaintenanceRequest>
+
+@{
+    ViewBag.Title = "ListRequest";
+}
+
+<h2>List Of Maintenance Request</h2>
+
+@if (Session["userId"] != null)
+{
+
+    <h4 style="text-align:right">Hai @Session["userName"].ToString()</h4>
+}
+<p>
+    @Html.ActionLink("Create New", "CreateRequest")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserRequest)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserRequest)
+            </td>
+            <td>
+
+
+                <a href="@Url.Content(item.ImagePath)" class="logo">@Url.Content(item.ImagePath)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+
+                @Html.ActionLink("Edit", "EditRequest", new { id = item.Id }) |
+                @Html.ActionLink("Details", "DetailsOfRequest", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "DeleteRequest", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
